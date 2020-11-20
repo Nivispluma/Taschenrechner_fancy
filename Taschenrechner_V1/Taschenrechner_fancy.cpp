@@ -177,7 +177,7 @@ struct Uebergabe eingabe()
 
 void AusgabeErgebnis(double ausgabe)
 {
-	cout << "das Ergebnis ist: " << ausgabe;
+	cout << "das Ergebnis ist: " << ausgabe << endl;
 }
 
 //-----------parsing--------------------------
