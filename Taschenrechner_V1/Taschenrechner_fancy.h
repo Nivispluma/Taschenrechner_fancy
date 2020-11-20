@@ -5,24 +5,35 @@
 
 using namespace std;
 
-struct Uebergabe
+struct ParsingIntern //bleibt innerhalb der parsing() funktion
 {
-	double Nummer1, Nummer2;
-	char Operator;
+	int codRechenzeichen;
+	size_t Trennung;
 };
 
-double addieren(double, double);
-double subtrahieren(double, double);
-double multiplizieren(double, double);
-double dividieren(double, double);
-double rechnen(double, double, char);
-double FaktorZahl(double, double);
+struct ParsingExtern //für die kommunikation nach aussen
+{
+	double Nummer1, Nummer2;
+	int Operator;
+};
 
-struct Uebergabe eingabe();
 
-void aufforderung();
-void AusgabeErgebnis(double);
+double rechnen(double, double, int);  //Rechnen übergibt die zahlen an die jeweilige rechenoperation
+	double addieren(double, double);	// die rechenarten sind selbsterklärend 
+	double subtrahieren(double, double);
+	double multiplizieren(double, double);
+	double dividieren(double, double);
 
-double parsing(string);
+
+struct ParsingExtern eingabe(); //main interagiert mit eingabe()
+	struct ParsingExtern parsing(string); //parsing nimmt den eingelesenen string auf, und zertrennt ihn später dann
+		struct ParsingIntern Rechenzeichen(string); //extrahiert die Art und Position des Rechenzeichens 
+		double ParsingZahl(string); //interpretiert die zerlegten Strings als zahl
+			double FaktorZahl(double, double); //eine art schieberegister
+
+void aufforderung(); // eingabeaufforderung zu beginn des programms 
+void AusgabeErgebnis(double); // ausgabe 
+
+
 
 int main();
